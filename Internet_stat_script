@@ -1,7 +1,7 @@
 #!/bin/bash
 
-input_file="Internet_stat_112025_MCN"
-output_file="MCN_Internet_112025"
+input_file="Internet_stat_122025_MCN"
+output_file="MCN_Internet_122025"
 
 # Проверка существования входного файла
 if [ ! -f "$input_file" ]; then
