@@ -1,0 +1,21 @@
+#!/bin/bash
+
+#Путь к файлу с таблицей Stat_MCN
+input_file="Stat_MCN_11_25"
+
+#Путь к файлу для записи результатов
+output_file="Stat_SMS_zebra_11_25"
+
+#Проверяем, существует ли файл с таблицей Stat_MCN
+if [[ ! -f $input_file ]]; then
+echo "Файл $input_file не найден!"
+exit 1
+fi
+
+# Создаем или очищаем файл для записи результатов
+echo "Number A;amount" > $output_file
+
+# Извлекаем уникальные номера из столбца "Номер А" и считаем количество их вхождений
+awk -F, 'NR>1 {num=substr($1,2); count[num]++} END {for (num in count) print num ";" count[num]}' $input_file >> $output_file
+
+echo "Обработка завершена. Результаты сохранены в $output_file"
